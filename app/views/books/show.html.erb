@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h1><%= @book.title %></h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <dl class="row">
+        <dt class="col-sm-4">Author:</dt>
+        <dd class="col-sm-8"><%= @book.author %></dd>
+
+        <dt class="col-sm-4">Published Date:</dt>
+        <dd class="col-sm-8"><%= @book.published_date %></dd>
+
+        <dt class="col-sm-4">Genre:</dt>
+        <dd class="col-sm-8"><%= @book.genre %></dd>
+      </dl>
+
+      <div class="mt-3">
+        <%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary" %>
+        <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <%= link_to "Back to Books", books_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <!-- Additional information or details can be added here -->
+      <h3>Reviews</h3>
+      <% if @reviews.any? %>
+        <ul>
+          <% @reviews.each do |review| %>
+            <li>
+              <strong>Rating:</strong> <%= review.rating %> -
+              <strong>Comment:</strong> <%= review.comment %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No reviews yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
